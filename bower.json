@@ -1,0 +1,35 @@
+{
+  "name": "self-registration-MEAN",
+  "version": "0.0.1",
+  "homepage": "https://github.com/robertojrojas/self-registration-MEAN",
+  "authors": [
+    "Roberto Rojas <robertojrojas@gmail.com>"
+  ],
+  "description": "Self Registration Sample application demonstrating the MEAN Stack.",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "MongoDB",
+    "ExpressJS",
+    "AngularJS",
+    "NodeJS"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "toastr": "~2.0.1",
+    "angular": "~1.2.16",
+    "angular-resource": "~1.2.16",
+    "angular-route": "~1.2.16"
+  }
+}
