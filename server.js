@@ -1,5 +1,6 @@
 var express = require('express'),
-     stylus = require('stylus');
+     stylus = require('stylus'),
+    mongoose = require('mongoose');
 
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'developement';
@@ -27,6 +28,24 @@ app.configure(function(){
     app.use(express.static(__dirname + '/public'));
 });
 
+mongoose.connect('mongodb://localhost/selfRegistration');
+
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error...'));
+db.once('open', function callback(){
+    console.log('Self Registration DB Opened');
+});
+
+var messageSchema = mongoose.Schema({message: String});
+
+var Message = mongoose.model('Message', messageSchema);
+
+var mongooseMessage;
+Message.findOne().exec(function(err,messageDoc){
+    mongooseMessage = messageDoc.message;
+});
+
 
 app.get('/partials/:partialPath', function(req, res){
     res.render('partials/'+req.params.partialPath);
@@ -35,7 +54,9 @@ app.get('/partials/:partialPath', function(req, res){
 // Server the Index page whenever our app does not
 // know how to deal with the URI
 app.get('*', function(req, res){
-    res.render('index');
+    res.render('index', {
+        mongoMessage : mongooseMessage
+    });
 });
 
 
