@@ -28,6 +28,10 @@ app.configure(function(){
 });
 
 
+app.get('/partials/:partialPath', function(req, res){
+    res.render('partials/'+req.params.partialPath);
+});
+
 // Server the Index page whenever our app does not
 // know how to deal with the URI
 app.get('*', function(req, res){
