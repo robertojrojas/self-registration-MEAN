@@ -37,13 +37,27 @@ db.once('open', function callback(){
     console.log('Self Registration DB Opened');
 });
 
+//TODO: I know the following mongoose section will be removed soon.
 var messageSchema = mongoose.Schema({message: String});
 
 var Message = mongoose.model('Message', messageSchema);
 
 var mongooseMessage;
 Message.findOne().exec(function(err,messageDoc){
-    mongooseMessage = messageDoc.message;
+
+    if (!messageDoc || !messageDoc.message) {
+      var newMessage = new Message({message: 'Hello MEAN Stack from MongoDB!'});
+      newMessage.save(function(err) {
+        if (!err) {
+          console.log('New MongoDB message inserted! ID:', newMessage._id);
+          mongooseMessage = newMessage.message;
+        } else {
+             console.log('Something went wrong inserting first document. Check if MongoDB is running.', err);
+        }
+      });
+    } else {
+       mongooseMessage = messageDoc.message;
+    }
 });
 
 
