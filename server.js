@@ -4,33 +4,35 @@ var express = require('express'),
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'developement';
 var port = process.env.PORT = process.env.PORT || 5750;
-
 var app = express();
 
 
 mongoose.connect('mongodb://localhost/selfRegistration');
-
 var db = mongoose.connection;
-
 db.on('error', console.error.bind(console, 'connection error...'));
 db.once('open', function callback(){
     console.log('Self Registration DB Opened');
 });
 
-var userRouter = express.Router();
-userRouter.route('/users')
-    .get(function (req, res, next) {
-        res.json(
-            [
-            {
-                firstName: 'Roberto',
-                lastName: 'Rojas',
-                email: 'robertojrojas@gmail.com'
-            }
-            ]
-        );
-    });
 
+var userRouter = express.Router();
+var User = require('./server/models/user');
+userRouter.route('/users')
+    .get(
+
+    function (req, res, next) {
+        User.model.find(function(err, users){
+            if(err){
+                res.status(500).send(err);
+                return;
+            }
+            res.json(
+                users
+            );
+        });
+
+
+    });
 app.use('/api', userRouter);
 
 
