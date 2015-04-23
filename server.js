@@ -17,6 +17,22 @@ db.once('open', function callback(){
     console.log('Self Registration DB Opened');
 });
 
+var userRouter = express.Router();
+userRouter.route('/users')
+    .get(function (req, res, next) {
+        res.json(
+            [
+            {
+                firstName: 'Roberto',
+                lastName: 'Rojas',
+                email: 'robertojrojas@gmail.com'
+            }
+            ]
+        );
+    });
+
+app.use('/api', userRouter);
+
 
 app.get('/', function(req, res){
     res.send('Basic API is ready!');
