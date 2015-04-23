@@ -9,7 +9,6 @@ This application requires MongoDB to be running.
 
 ## Install
     npm install
-    bower install
 
     mongod --dbpath=....
 
