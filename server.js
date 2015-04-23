@@ -19,7 +19,7 @@ db.once('open', function callback(){
 
 
 app.get('/', function(req, res){
-    res.send('Basic setup is ready!');
+    res.send('Basic API is ready!');
 });
 
 

@@ -12,5 +12,5 @@ This application requires MongoDB to be running.
 
     mongod --dbpath=....
 
-## Run
-    node[mon] server.js
+## Run - Using gulp so it wraps nodemon among other goodies :)
+    gulp

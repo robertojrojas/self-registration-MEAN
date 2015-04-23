@@ -23,8 +23,10 @@
   },
   "homepage": "https://github.com/robertojrojas/self-registration-MEAN",
   "dependencies": {
-    "jade": "^1.9.2",
     "express": "^4.12.3",
+    "gulp": "^3.8.11",
+    "gulp-nodemon": "^2.0.2",
+    "jade": "^1.9.2",
     "mongoose": "^4.0.2"
   },
   "devDependencies": {
