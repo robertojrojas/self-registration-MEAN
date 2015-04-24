@@ -14,25 +14,9 @@ db.once('open', function callback(){
     console.log('Self Registration DB Opened');
 });
 
-
-var userRouter = express.Router();
 var User = require('./server/models/user');
-userRouter.route('/users')
-    .get(
-
-    function (req, res, next) {
-        User.model.find(function(err, users){
-            if(err){
-                res.status(500).send(err);
-                return;
-            }
-            res.json(
-                users
-            );
-        });
-
-
-    });
+var userRouter = express.Router();
+require('./server/routes/users')(userRouter, User);
 app.use('/api', userRouter);
 
 
